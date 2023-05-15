@@ -1,4 +1,5 @@
 const restaurants = require('../data');
+const Restaurant = require('../models/restaurant');
 
 // Récupérer tous les restaurants
 const getAllRestaurants = (req, res) => {
@@ -19,13 +20,13 @@ const getRestaurantById = (req, res) => {
 
 // Créer un nouveau restaurant
 const createRestaurant = (req, res) => {
-  const { name, city, website, cuisine, service, handicapAccessible } = req.body;
-  const id = restaurants.length + 1;
-  const newRestaurant = new Restaurant(id, name, city, website, cuisine, service, handicapAccessible);
-  restaurants.push(newRestaurant);
-
-  res.status(201).json(newRestaurant);
-};
+    const { name, city, website, cuisine, service, handicapAccessible } = req.body;
+    const id = restaurants.length + 1;
+    const newRestaurant = new Restaurant(id, name, city, website, cuisine, service, handicapAccessible);
+    restaurants.push(newRestaurant);
+  
+    res.status(201).json(newRestaurant);
+  };
 
 // Mettre à jour un restaurant
 const updateRestaurant = (req, res) => {

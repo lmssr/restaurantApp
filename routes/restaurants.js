@@ -9,7 +9,7 @@ router.get('/', restaurantController.getAllRestaurants);
 router.get('/:id', restaurantController.getRestaurantById);
 
 // Route pour créer un nouveau restaurant
-router.post('/', restaurantController.createRestaurant);
+router.post('/restaurants', restaurantController.createRestaurant);
 
 // Route pour mettre à jour un restaurant
 router.put('/:id', restaurantController.updateRestaurant);
