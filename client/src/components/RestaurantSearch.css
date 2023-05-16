@@ -1,0 +1,35 @@
+.restaurant-search {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .restaurant-search form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .restaurant-search input {
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    margin-right: 10px;
+  }
+  
+  .restaurant-search button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .restaurant-search button:hover {
+    background-color: #0069d9;
+  }
+  

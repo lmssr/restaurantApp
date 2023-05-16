@@ -1,8 +1,14 @@
 const express = require('express');
 const app = express();
-const PORT = 3000;
-
+const cors = require('cors');
 const restaurantController = require('./controllers/restaurantController');
+
+const PORT = 3000;
+// Autoriser les requêtes provenant de l'application React sur le port 3001
+app.use(cors({
+  origin: 'http://localhost:3001'
+}));
+
 
 app.use(express.json());
 
