@@ -33,11 +33,14 @@ const App = () => {
         body: JSON.stringify(newRestaurant),
       });
       const createdRestaurant = await response.json();
-      setRestaurants([...restaurants, createdRestaurant]);
+      setRestaurants((prevRestaurants) => [...prevRestaurants, createdRestaurant]);
+      setSearchResult([]); // Réinitialise la liste des résultats de recherche
     } catch (error) {
       console.error('Erreur lors de l\'ajout du restaurant:', error);
     }
   };
+  
+  
 
   const searchRestaurant = (searchValue) => {
     const filteredRestaurants = restaurants.filter((restaurant) => {
@@ -60,7 +63,7 @@ const App = () => {
       ) : (
         <SearchResult searchResult={searchResult} />
       )}
-      <RestaurantForm onAddRestaurant={addRestaurant} />
+      <RestaurantForm addRestaurant={addRestaurant} restaurants={restaurants} />
     </div>
   );
 };

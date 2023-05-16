@@ -1,38 +1,29 @@
 import React, { useEffect, useState } from 'react';
 import './RestaurantList.css';
 
-const RestaurantList = () => {
-  const [restaurants, setRestaurants] = useState([]);
+const RestaurantList = ({ restaurants }) => {
+  const [restaurantList, setRestaurantList] = useState([]);
 
   useEffect(() => {
-    // Fonction pour récupérer les restaurants depuis l'API
-    const fetchRestaurants = async () => {
-      try {
-        const response = await fetch('http://localhost:3000/restaurants');
-        const data = await response.json();
-        setRestaurants(data);
-      } catch (error) {
-        console.error('Erreur lors de la récupération des restaurants:', error);
-      }
-    };
-
-    // Appeler la fonction pour récupérer les restaurants au chargement du composant
-    fetchRestaurants();
-  }, []);
+    // Tri de la liste des restaurants par ordre alphabétique
+    const sortedRestaurants = [...restaurants].sort((a, b) => {
+      const nameA = a.name ? a.name.toLowerCase() : '';
+      const nameB = b.name ? b.name.toLowerCase() : '';
+      return nameA.localeCompare(nameB);
+    });
+    setRestaurantList(sortedRestaurants);
+  }, [restaurants]);
 
   const handleEditRestaurant = (restaurantId) => {
-    // Logique pour ouvrir le formulaire de modification pour le restaurant avec l'ID donné
     console.log('Éditer restaurant avec ID :', restaurantId);
   };
 
   const handleDeleteRestaurant = async (restaurantId) => {
     try {
-      // Appeler l'API pour supprimer le restaurant avec l'ID donné
       await fetch(`http://localhost:3000/restaurants/${restaurantId}`, {
         method: 'DELETE',
       });
-      // Mettre à jour la liste des restaurants après suppression
-      setRestaurants(restaurants.filter((restaurant) => restaurant.id !== restaurantId));
+      setRestaurantList(restaurantList.filter((restaurant) => restaurant.id !== restaurantId));
     } catch (error) {
       console.error('Erreur lors de la suppression du restaurant:', error);
     }
@@ -41,7 +32,7 @@ const RestaurantList = () => {
   return (
     <div className="restaurant-list">
       <h2 className="restaurant-list-title">Liste des restaurants</h2>
-      {restaurants.map((restaurant) => (
+      {restaurantList.map((restaurant) => (
         <div className="restaurant-card" key={restaurant.id}>
           <h3>{restaurant.name}</h3>
           <p>Ville : {restaurant.city}</p>
