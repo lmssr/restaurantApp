@@ -25,6 +25,19 @@ const RestaurantList = () => {
     console.log('Éditer restaurant avec ID :', restaurantId);
   };
 
+  const handleDeleteRestaurant = async (restaurantId) => {
+    try {
+      // Appeler l'API pour supprimer le restaurant avec l'ID donné
+      await fetch(`http://localhost:3000/restaurants/${restaurantId}`, {
+        method: 'DELETE',
+      });
+      // Mettre à jour la liste des restaurants après suppression
+      setRestaurants(restaurants.filter((restaurant) => restaurant.id !== restaurantId));
+    } catch (error) {
+      console.error('Erreur lors de la suppression du restaurant:', error);
+    }
+  };
+
   return (
     <div className="restaurant-list">
       <h2 className="restaurant-list-title">Liste des restaurants</h2>
@@ -37,6 +50,7 @@ const RestaurantList = () => {
           <p>Sert sur place : {restaurant.service ? 'Oui' : 'Non'}</p>
           <p>Accessible aux personnes handicapées : {restaurant.handicapAccessible ? 'Oui' : 'Non'}</p>
           <button onClick={() => handleEditRestaurant(restaurant.id)}>Modifier</button>
+          <button onClick={() => handleDeleteRestaurant(restaurant.id)}>Supprimer</button>
         </div>
       ))}
     </div>

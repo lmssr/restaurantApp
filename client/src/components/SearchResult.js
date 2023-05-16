@@ -1,15 +1,16 @@
 import React from 'react';
+import './SearchResult.css';
 
 const SearchResult = ({ searchResult }) => {
   return (
-    <div>
-      <h2>Résultats de la recherche</h2>
+    <div className="search-result">
+      <h2 className="search-result-title">Résultats de la recherche</h2>
       {searchResult.length === 0 ? (
         <p>Aucun restaurant trouvé.</p>
       ) : (
         <ul>
           {searchResult.map((restaurant) => (
-            <li key={restaurant.id}>
+            <li className="search-result-card" key={restaurant.id}>
               <h3>{restaurant.name}</h3>
               <p>Ville : {restaurant.city}</p>
               <p>Site Web : <a href={restaurant.website}>{restaurant.website}</a></p>

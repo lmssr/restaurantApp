@@ -1,14 +1,12 @@
 import React, { useState } from 'react';
+import './RestaurantSearch.css';
 
 const RestaurantSearch = ({ onSearch }) => {
   const [searchValue, setSearchValue] = useState('');
 
   const handleInputChange = (e) => {
     setSearchValue(e.target.value);
-  };
-
-  const handleSearch = () => {
-    onSearch(searchValue);
+    onSearch(e.target.value);
   };
 
   return (
@@ -19,7 +17,6 @@ const RestaurantSearch = ({ onSearch }) => {
         value={searchValue}
         onChange={handleInputChange}
       />
-      <button onClick={handleSearch}>Rechercher</button>
     </div>
   );
 };

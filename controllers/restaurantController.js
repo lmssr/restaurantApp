@@ -1,5 +1,5 @@
 const restaurants = require('../data');
-const Restaurant = require('../models/restaurant');
+const Restaurant = require('../models/Restaurant');
 
 // Récupérer tous les restaurants
 const getAllRestaurants = (req, res) => {
